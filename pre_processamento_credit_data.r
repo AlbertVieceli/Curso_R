@@ -16,3 +16,11 @@ mean(base$age, na.rm = TRUE)
 media = mean(base$age[base$age > 0], na.rm = TRUE)
 
 base$age = ifelse(base$age<0, media, base$age)
+
+#Identificando e substi os NA pela media
+base[is.na(base$age),1:4]
+base$age = ifelse(is.na(base$age), mean(base$age, na.rm = TRUE), base$age)
+
+#Escalonamento de atributos (normalizacao ou padronizacao(preferencia essa))
+#base = scale(base)
+base[, 1:3] = scale(base[,1:3])
