@@ -24,3 +24,11 @@ base$age = ifelse(is.na(base$age), mean(base$age, na.rm = TRUE), base$age)
 #Escalonamento de atributos (normalizacao ou padronizacao(preferencia essa))
 #base = scale(base)
 base[, 1:3] = scale(base[,1:3])
+
+#Divisao base teste e base treinamento
+library(caTools)
+set.seed(1)
+divisao = sample.split(base$income, SplitRatio = 0.85)
+base_treinamento = subset(base, divisao == TRUE)
+base_teste = subset(base, divisao == FALSE)
+
